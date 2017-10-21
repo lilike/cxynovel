@@ -14,7 +14,7 @@ MySQL - 5.5.40 : Database - novel
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`novel` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-USE `novel`;
+USE `novel`;   
 
 /*Table structure for table `history_store` */
 
