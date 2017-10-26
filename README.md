@@ -3,7 +3,10 @@
 
 
 ## 系统架构
-1. 采用经典J2EE SSM接口
-2. 数据库采用mySql
+1. 系统采用SSM结构
+2. 连接池采用alibaba.druid
+3. 系统采用maven进行项目管理
+4. 小说页采用模板引擎freemarker
+
 
 
