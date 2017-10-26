@@ -158,7 +158,7 @@ auto_increment = 1;
 create table t_system_block
 (
    block_no             int(32) not null auto_increment,
-   block_id             int(32),
+   block_id             varchar(32),
    block_name           varchar(32),
    type                 smallint,
    category             int(32),
