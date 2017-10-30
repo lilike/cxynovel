@@ -24,6 +24,11 @@
         <filter-name>encodingFilter</filter-name>  
         <url-pattern>/*</url-pattern>  
     </filter-mapping>  
+    <!-- 自定义的监听器 -->
+    <listener>
+    	<listener-class>com.chawuzhi.novel.module.listener.DataInitProcessorListener</listener-class>
+    </listener>
+    
     <!-- Spring监听器 -->  
     <listener>  
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  

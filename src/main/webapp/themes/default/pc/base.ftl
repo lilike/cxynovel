@@ -18,6 +18,7 @@
   DD_belatedPNG.fix('.png_bg');
 </script>
 <![endif]-->
+<#assign categorymap = categoryData?eval>
 <#if assignContent?exists>  
       <@assignContent/>
 </#if>
@@ -53,10 +54,13 @@
 <!--[if lt IE 8]>
 <script type="text/javascript" src="${contextPath}/themes/default/pc/js/lib/json.js"></script>
 <![endif]-->
-<script type="text/javascript">
-        adEffective = <#if adEffective?? && adEffective>true<#else>false</#if>;
-        var contextPath = "${contextPath} ";
-</script>
+
+<#-- <script type="text/javascript"> -->
+<#--        enableQQLogin = <#if enableQQLogin>true<#else>false</#if>;-->
+<#--        adEffective = <#if adEffective?? && adEffective>true<#else>false</#if>;-->
+<#--        var contextPath = "${contextPath}";-->
+<#-- </script> -->
+
 <#if customizeJs?exists>  
         <@customizeJs/>
 </#if>

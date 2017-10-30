@@ -51,7 +51,7 @@
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-		<property name="basePackage" value="com.chawuzhi.novel.mapper" />
+		<property name="basePackage" value="com.chawuzhi.novel.common.mapper" />
 	</bean>
 	
 	<!-- 事务管理器 基于jdbc，ibatis，mybaits的spring事务管理 -->

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
 
+import com.alibaba.fastjson.JSON;
+import com.chawuzhi.novel.module.listener.DataInitProcessorListener;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 
@@ -38,6 +40,27 @@ public class BaseController {
 		String modelName=list.get(0)+"/"+list.get(1);
 		model.addAttribute("model", modelName);
 		return page;
+	}
+	
+	/**
+	 * 初始化页面某些不变化的数据
+	 * @param model
+	 */
+	public void initialPageData(HttpServletRequest request,Model model) {
+		// 路径
+		model.addAttribute("contextPath", request.getContextPath());
+		// 系统分类表
+		model.addAttribute("categoryData",JSON.toJSONString(DataInitProcessorListener.categoryMap));
+		// 系统名称
+		model.addAttribute("labelSystemTitle",DataInitProcessorListener.packageMap.get("label.system.title"));
+		model.addAttribute("labelSystemName",DataInitProcessorListener.packageMap.get("label.system.name"));
+		model.addAttribute("labelSystemSiteDescription",DataInitProcessorListener.packageMap.get("label.system.siteDescription"));
+		model.addAttribute("labelSystemSiteKeywords",DataInitProcessorListener.packageMap.get("label.system.siteKeywords"));
+		model.addAttribute("labelSystemUrl",DataInitProcessorListener.packageMap.get("label.system.url"));
+		model.addAttribute("labelSystemCopyright",DataInitProcessorListener.packageMap.get("label.system.copyright"));
+		model.addAttribute("labelSystemBeianNo",DataInitProcessorListener.packageMap.get("label.system.beianNo"));
+		model.addAttribute("labelSystemAnalyticscode",DataInitProcessorListener.packageMap.get("label.system.analyticscode"));
+		model.addAttribute("labelSystemSupport",DataInitProcessorListener.packageMap.get("label.system.support"));
 	}
 	
 

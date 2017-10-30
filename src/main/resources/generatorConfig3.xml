@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 引入配置文件 -->
+	<!-- 指定数据连接驱动jar地址 -->
+	<classPathEntry
+		location="C:\soft\apache-maven-3.3.9\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar" />
+
+	<!-- 一个数据库一个context -->
+	<context id="infoGuardian">
+
+	
+<!-- 		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		
+		<plugin type="org.mybatis.generator.plugins.AddField"/>
+		<plugin type="org.mybatis.generator.plugins.SelectOneByExample"/> 
+	视图不需要生成下面的文件
+ 	    <plugin type="org.mybatis.generator.plugins.SelectByExampleShowField"/>
+		<plugin type="org.mybatis.generator.plugins.SelectOneByExampleShowField"/> 
+		<plugin type="org.mybatis.generator.plugins.AddCriterionIgnoreNull"/>
+		
+		
+		<plugin type="org.mybatis.generator.plugins.InsertBatch"/>
+ 		<plugin type="org.mybatis.generator.plugins.UpdateByExampleSelectiveSync"/>
+		<plugin type="org.mybatis.generator.plugins.UpdateByPrimaryKeySelectiveSync"/>
+		<plugin type="org.mybatis.generator.plugins.SelectByPrimaryKeyShowField"/> -->
+
+		<!-- 注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="false" /> <!-- 是否生成注释代时间戳 -->
+		</commentGenerator>
+
+		<!-- jdbc连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/novel" userId="root" password="root" />
+
+		<!-- 类型转换 -->
+		<javaTypeResolver>
+			<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成实体类地址 -->
+		<javaModelGenerator targetPackage="com.chawuzhi.novel.common.domain"
+			targetProject="test-kafka">
+			<!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+			<property name="trimStrings" value="true" />
+			<property name="rootClass" value="com.chawuzhi.novel.common.base.BaseDomain" />
+		</javaModelGenerator>
+
+		<!-- 生成mapxml文件 -->
+		<sqlMapGenerator targetPackage="com.chawuzhi.novel.common.mapper"
+			targetProject="test-kafka">
+		</sqlMapGenerator>
+
+		<!-- 生成mapxml对应client，也就是接口dao -->
+		<javaClientGenerator targetPackage="com.chawuzhi.novel.common.mapper"
+			targetProject="test-kafka" type="XMLMAPPER">
+
+		</javaClientGenerator>
+		
+	
+	
+<!-- <table tableName="stat_login_daily" domainObjectName="StatLoginDaily"></table>
+<table tableName="stat_register_daily" domainObjectName="StatRegisterDaily"></table>
+<table tableName="recommend_book" domainObjectName="RecommendBook"></table>
+<table tableName="sys_user" domainObjectName="SysUser"></table>
+<table tableName="t_article" domainObjectName="TArticle"></table>
+<table tableName="t_book" domainObjectName="TBook"></table>
+<table tableName="t_bookcase" domainObjectName="TBookcase"></table>
+<table tableName="t_chapter" domainObjectName="TChapter"></table>
+<table tableName="t_system_block" domainObjectName="TSystemBlock"></table>
+<table tableName="t_user" domainObjectName="TUser"></table>
+<table tableName="t_user_detail" domainObjectName="TUserDetail"></table>
+<table tableName="user_login_info" domainObjectName="UserLoginInfo"></table> -->
+<table tableName="sys_dict" domainObjectName="SysDict"></table>
+
+</context>
+</generatorConfiguration>  

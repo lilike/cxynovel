@@ -13,10 +13,9 @@ import com.chawuzhi.novel.common.domain.TSystemBlock;
 import com.chawuzhi.novel.module.index.service.TBookService;
 import com.chawuzhi.novel.module.index.service.TSystemBlockService;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类  
 @ContextConfiguration(locations = {"classpath:spring/applicationContext.xml"})  
-public class TestUser {
+public class TestHello {
 
 	@Autowired
 	private TSystemBlockService tSystemBlockService;
@@ -25,31 +24,30 @@ public class TestUser {
 	private TBookService tBookService;
 	
 	@Test
-	public void test01() throws Exception {
-		List<TSystemBlock> findAll = tSystemBlockService.findAll();
-		for (TSystemBlock tSystemBlock : findAll) {
-			System.out.println(tSystemBlock);
+	public void test01() {
+		try {
+			List<TBook> findAll = tBookService.findAll();
+			for (TBook tBook : findAll) {
+				System.out.println("=====");
+				System.out.println(tBook);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
-	
 	@Test
-	private void test02() {
-		List<TBook> findAll = tBookService.findAll();
-		for (TBook tBook : findAll) {
-			System.out.println(tBook);
+	public void test02() {
+		
+		List<TSystemBlock> findAll = tSystemBlockService.findAll();
+		for (TSystemBlock tSystemBlock : findAll) {
+			System.out.println(tSystemBlock.getContent());
+			System.out.println(tSystemBlock.getBlockName());
 		}
+		
 		
 	}
 	
-	@Test
-	public void test010() {
-		System.out.println("haha");
 	
-	}
-	
-	public static void main(String[] args) {
-		System.out.println("hello");
-	}
 	
 }
