@@ -290,7 +290,30 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>shadowweb</finalName>
+		<finalName>dreamnovel</finalName>
+				<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>jdbc.properties</include>
+					<include>log4j.properties</include>
+					<include>package.properties</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
