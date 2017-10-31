@@ -63,19 +63,19 @@
 		
 	
 	
+<table tableName="t_book" domainObjectName="TBook"></table>
 <!-- <table tableName="stat_login_daily" domainObjectName="StatLoginDaily"></table>
+<table tableName="t_system_block" domainObjectName="TSystemBlock"></table>
 <table tableName="stat_register_daily" domainObjectName="StatRegisterDaily"></table>
 <table tableName="recommend_book" domainObjectName="RecommendBook"></table>
 <table tableName="sys_user" domainObjectName="SysUser"></table>
 <table tableName="t_article" domainObjectName="TArticle"></table>
-<table tableName="t_book" domainObjectName="TBook"></table>
 <table tableName="t_bookcase" domainObjectName="TBookcase"></table>
 <table tableName="t_chapter" domainObjectName="TChapter"></table>
-<table tableName="t_system_block" domainObjectName="TSystemBlock"></table>
 <table tableName="t_user" domainObjectName="TUser"></table>
 <table tableName="t_user_detail" domainObjectName="TUserDetail"></table>
 <table tableName="user_login_info" domainObjectName="UserLoginInfo"></table> -->
-<table tableName="sys_dict" domainObjectName="SysDict"></table>
-
+<!-- <table tableName="sys_dict" domainObjectName="SysDict"></table>
+ -->
 </context>
 </generatorConfiguration>  

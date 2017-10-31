@@ -20,7 +20,7 @@ public class TSystemBlockServiceImpl implements TSystemBlockService {
 	
 	@Override
 	public List<TSystemBlock> findAll() {
-		return tSystemBlockMapper.selectByExample(new TSystemBlockExample());
+		return tSystemBlockMapper.selectByExampleWithBLOBs(new TSystemBlockExample());
 	}
 
 }
