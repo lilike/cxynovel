@@ -35,7 +35,11 @@ public class DataInitProcessorListener implements ServletContextListener {
 		//Properties languageConf = new Properties(Thread.currentThread().getContextClassLoader().getResource("language/package.properties"));
 		//String value = languageConf.getString("collectionProperties.article.category");
 		Properties pro = new Properties();
-		InputStream in = new FileInputStream(new File(this.getClass().getClassLoader().getResource("package.properties").toURI().getPath().substring(1)));
+		String pathStr = this.getClass().getClassLoader().getResource("package.properties").toURI().getPath();
+		 if("\\".equals(File.separator)) {
+			 pathStr = pathStr.substring(1).replaceAll("/", "\\\\");
+		}
+		InputStream in = new FileInputStream(new File(pathStr));
 			pro.load(in);
 			// 初始化小说分类
 			initCategoryData(pro);
