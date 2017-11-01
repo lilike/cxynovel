@@ -315,6 +315,16 @@
 			</resource>
 		</resources>
 		<plugins>
+		<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<path>/</path>
+					<port>80</port>
+					<uriEncoding>utf-8</uriEncoding>
+					<charset>utf-8</charset>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
