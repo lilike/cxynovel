@@ -30,21 +30,11 @@ $(function() {
 				}
 			}
 	});
+	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+		  console.log(e.target) // 激活的标签页
+		  console.log(e.relatedTarget) // 前一个激活的标签页
+	})
 });
-/*<li>
-<a href="#systemSetting" class="nav-header collapsed" data-toggle="collapse">
-    <i class="glyphicon glyphicon-cog"></i>
-    系统管理
-       <span class="pull-right glyphicon glyphicon-chevron-down"></span>
-</a>
-<ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">
-    <li><a href="#"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>
-    <li><a href="#"><i class="glyphicon glyphicon-th-list"></i>菜单管理</a></li>
-    <li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>角色管理</a></li>
-    <li><a href="#"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>
-    <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>
-</ul>
-</li>*/
 /**
  * 初始化菜单
  */
@@ -54,7 +44,7 @@ function initMenu() {
 	$("#main-nav").html("");
 	$.each(menuList,function(i,value) {
 		if(value.parentid == 0){
-			$("#main-nav").append("<li onclick='clickMenu(this," + value.id + ")'><a href='#systemSetting' class='nav-header collapsed' data-toggle='collapse'><i class='glyphicon glyphicon-cog'></i>" + value.name + "<span class='pull-right glyphicon glyphicon-chevron-down'></span></i></a></li>");
+			$("#main-nav").append("<li><a onclick='clickMenu(this," + value.id + ")' href='#systemSetting_"+value.id+"' class='nav-header collapsed' data-toggle='collapse'><i class='glyphicon glyphicon-cog'></i>" + value.name + "<span class='pull-right glyphicon glyphicon-chevron-down'></span></i></a><ul id='systemSetting_"+value.id+"' class='nav nav-list collapse secondmenu' style='height: 0px;'></ul></li>");
 		}
 	});
 }
@@ -64,12 +54,18 @@ function initMenu() {
  */
 function initSubMenu(parentid) {
 	var menuList = menuMap[0];
-	$("#subMenuDiv").html("");
-	$.each(menuList,function(i,value) {
-		if(parentid == value.parentid){
-			$("#subMenuDiv").append("<h3 onclick=\"clickSubMenu(this,'" + value.url + "')\"><a>" + value.name + "</a></h3>");
-		}
-	});
+	if($('#systemSetting_'+parentid).children().size()>0){
+		$("#systemSetting_"+parentid).html("");
+		$("#systemSetting_"+parentid).css("height","0px");
+	}else{
+		$("#systemSetting_"+parentid).css("height","auto");
+		$("#systemSetting_"+parentid).html("");
+		$.each(menuList,function(i,value) {
+			if(parentid == value.parentid){
+				$("#systemSetting_"+parentid).append(" <li onclick='clickSubMenu(this," +'"'+value.name+'"'+","+'"'+ value.url+ '"' + ")'><a><i class='glyphicon glyphicon-user' style='color:green;'>"+value.name+"</i></a></li>");
+			}
+		});
+	}
 }
 
 /**
@@ -87,13 +83,26 @@ function clickMenu(element,id) {
 /**
  * 方法描述:单击子菜单（页面左部菜单），初始化主页面
  */
-function clickSubMenu(element,path) {
+function clickSubMenu(element,name,path) {
+	$("#myTab").children().attr("class","");
+	$("#myTab #logintitle").hide();
+	var flag = checkTabIsExists("myTab",name);
+	if(flag){
+		$("#myTab a[href='#"+name+"']").tab('show');
+	}else{
+		$("#myTab").append(" <li id='"+name+"' class='active'><a href='#"+name+"' data-toggle='tab'> "+name+" <span onclick='closeTab(this)' class='glyphicon glyphicon-remove'></span></a></li>");
+		var tabList = $("#myTabContent").children();
+		$.each(tabList,function(i,value) {
+			$(this).attr("class","tab-pane fade");
+		});
+		$("#myTabContent").append("<div class='tab-pane fade in active' id='"+name+"'><iframe src='" + ($("#basePath").val()+path) + "' style='width:100%;min-height:770px;frameborder:no;border:0;marginwidth:0; marginheight:0;scrolling:yes;allowtransparency:yes; '></iframe></div>");
+	}
 	// 将其他有[选中样式]的节点的样式清空
-	$("#subMenuDiv").find(".on").attr("class","");
+	/*$("#subMenuDiv").find(".on").attr("class","");*/
 	// 将当前单击的节点置为[选中样式]
-	$(element).children().attr("class","on");
+//	$(element).children().attr("class","on");
 	// 按指定地址加载主页面(iframe)
-	$("#mainPage").attr("src",$("#basePath").val()+ path);
+//	$("#myTabContent").attr("src",$("#basePath").val()+ path);
 }
 
 /**
@@ -142,3 +151,40 @@ Date.prototype.Format = function(fmt)
   fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
   return fmt;   
 }  
+
+/**
+ * 关闭标签页
+ * @param button
+ */
+function closeTab (button) {
+     
+    //通过该button找到对应li标签的id
+    var li_id = $(button).parent().parent().attr('id');
+//    var id = li_id.replace("tab_li_","");
+    var prev_id = $("li.active").prev().attr('id');
+    //如果关闭的是当前激活的TAB，激活他的前一个TAB
+    if ($("li.active").attr('id') == li_id) {
+    	if(prev_id == "logintitle"){
+    		$("#myTab #logintitle").css("display","block");
+    		$("#myTabContent").children().attr("class","tab-pane fade in active ");
+    	}
+        $("li.active").prev().find("a").click();
+        $("#"+prev_id).attr("class","tab-pane fade in active");
+    }
+     
+    //关闭TAB
+    $("#" + li_id).remove();
+//    $("#tab_content_" + id).remove();
+};
+ 
+/**
+ * 判断是否存在指定的标签页
+ * @param tabMainName
+ * @param tabName
+ * @returns {Boolean}
+ */
+function checkTabIsExists(tabMainName, tabName){
+    var tab = $("#"+tabMainName+"  #"+tabName);
+    //console.log(tab.length)
+    return tab.length > 0;
+}

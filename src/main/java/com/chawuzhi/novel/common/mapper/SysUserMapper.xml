@@ -119,4 +119,7 @@
    <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
     select * from sys_user where user_name = #{userName} and password = #{password}
   </select>
+   <select id="selectAll" resultMap="BaseResultMap">
+    select * from sys_user
+  </select>
 </mapper>
