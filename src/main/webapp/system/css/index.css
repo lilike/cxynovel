@@ -132,12 +132,16 @@ body {
 }
 #myTab{
 	background-color:#fff;
+	border:0.5px solid grey;
 	border-bottom:2px solid #212121;
 	border-radius: 5px;
+	box-shadow: 3px 3px 3px #555;
 }
 #myTabContent{
+	border:0.5px solid grey;
 	margin-top:10px;
 	background-color:#fff;
 	border-radius: 5px;
 	min-height:765px;
+	box-shadow: 3px 3px 3px #555;
 }
